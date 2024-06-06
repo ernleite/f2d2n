@@ -287,7 +287,6 @@ class Epochs(context: ActorContext[ComputeEpochs.TrainCommand]) extends Abstract
         for (x <- 0 until Network.InputLayerDim) {
           actorsCount+=1
           val name = "inputLayer_" + x
-          context.log.info("retrieving stats from " + name)
           val actor = Network.LayersInputRef(name)
           actor ! ComputeInputs.getStats("epoch_0", x)
         }
@@ -296,7 +295,6 @@ class Epochs(context: ActorContext[ComputeEpochs.TrainCommand]) extends Abstract
           for (x <- 0 until Network.getHiddenLayersDim(l, "hidden")) {
             actorsCount+=1
             val name = "weightedLayer_" + idxW + "_" + x
-            context.log.info(name)
             val actor = Network.LayersIntermediateRef(name)
             actor ! ComputeWeighted.getStats("epoch_0",x)
           }
@@ -317,7 +315,6 @@ class Epochs(context: ActorContext[ComputeEpochs.TrainCommand]) extends Abstract
         for (x <- 0 until Network.OutputLayerDim) {
           actorsCount+=1
           val name = "outputLayer_" + x
-          context.log.info("retrieving stats from " + name)
           val actor2 = Network.LayersOutputRef(name)
           actor2 ! ComputeOutput.getStats("epoch_0",x)
         }
@@ -325,12 +322,14 @@ class Epochs(context: ActorContext[ComputeEpochs.TrainCommand]) extends Abstract
 
     case SetStats(eventFF:Int, eventBP:Int, fromActor : String) =>
         actorCount+=1
-        context.log.info("Received logs from " + fromActor)
         this.eventFF += eventFF
         this.eventBP += eventBP
         context.log.info(this.eventFF + " " +this.eventBP)
         if (actorsCount == actorCount) {
           actorCount = 0
+          context.log.info("----------------- Statistics ----------------------")
+          context.log.info("Feed-Forward events total : " + this.eventFF)
+          context.log.info("Back-Propagation events total : " + this.eventBP)
           epochsStats(epochDoneCount) +=  "," + this.eventFF + "," + this.eventBP
           context.self ! NextMiniBatch()
         }
