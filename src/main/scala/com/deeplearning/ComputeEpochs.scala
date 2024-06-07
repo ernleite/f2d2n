@@ -327,9 +327,11 @@ class Epochs(context: ActorContext[ComputeEpochs.TrainCommand]) extends Abstract
         context.log.info(this.eventFF + " " +this.eventBP)
         if (actorsCount == actorCount) {
           actorCount = 0
-          context.log.info("----------------- Statistics ----------------------")
-          context.log.info("Feed-Forward events total : " + this.eventFF)
-          context.log.info("Back-Propagation events total : " + this.eventBP)
+          if (epochDoneCount == lastEpochIndex) {
+            context.log.info("----------------- Statistics ----------------------")
+            context.log.info("Feed-Forward events total : " + this.eventFF)
+            context.log.info("Back-Propagation events total : " + this.eventBP)
+          }
           epochsStats(epochDoneCount) +=  "," + this.eventFF + "," + this.eventBP
           context.self ! NextMiniBatch()
         }
