@@ -1,4 +1,4 @@
-**Fully distributed Deep Neural Network**
+**Fully distributed Deep Neural Network**   
 The code is free to use unless part of the Akka implementation (see lightbend licencing mode here : https://www.lightbend.com/akka/license-faq)  
 
 To start the cluster (XX = memory to allocate) :    
