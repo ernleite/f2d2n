@@ -18,10 +18,14 @@ wget -O - https://apt.corretto.aws/corretto.key | sudo gpg --dearmor -o /usr/sha
 ### Start the cluster ###
 To start the cluster (XX = memory to allocate) :    
 ** Main server (Epoch) or standalone mode: **    
+```
 sbt -J-XmxXXg -J-XX:+UseG1GC "runMain sample.cluster.simple.StartMain"   
+```
 
 ** Worker (if cluster > 1 node)  **
+```
 sbt -J-Xmx160g -J-XX:+UseG1GC "runMain sample.cluster.simple.StartWorker"    
+```
 
 **Resources folder contains :**   
 application.conf : specify the akka cluster   
