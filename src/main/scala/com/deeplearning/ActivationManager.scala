@@ -1,6 +1,6 @@
 package com.deeplearning
 
-import breeze.linalg.{DenseMatrix, DenseVector, max}
+import breeze.linalg.{DenseMatrix, DenseVector, InjectNumericOps, max}
 import breeze.numerics.{sigmoid, tanh}
 import com.deeplearning.CostManager.dotProduct
 
@@ -21,6 +21,8 @@ object ActivationManager {
         arr
          */
         CostManager.softMax(z)
+      case "SiLu" =>
+        z * sigmoid(new DenseVector(z)).toArray
       case "Sigmoid" =>
         sigmoid(new DenseVector(z)).toArray
       case "Tanh" =>
@@ -39,6 +41,8 @@ object ActivationManager {
       case "Relu" => if (z > 0) z else 0
       case "Tanh" => tanh(z)
       case "LeakyRelu" => max(z, z * Network.LeakyReluAlpha)
+      case "SiLu" =>
+        z*sigmoid(z)
       case "Sigmoid" =>
         sigmoid(z)
     }
@@ -62,6 +66,10 @@ object ActivationManager {
       case "Sigmoid" =>
         val mat = (1.0f - DenseMatrix(sigmoid(z)))
         val arr = dotProduct(sigmoid(z),mat.toArray)
+        arr
+      case "SiLu" =>
+        val mat = (1.0f - DenseMatrix(sigmoid(z)))
+        val arr = dotProduct(z*sigmoid(z),mat.toArray)
         arr
       case "Tanh" =>
         val tanhX = tanh(new DenseVector(z)).toArray

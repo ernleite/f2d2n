@@ -10,17 +10,17 @@ import scala.util.Random
 object Network {
 
   val clusterNodesDim = 1 // Cluster dimension
-  val trainingSample = "Mnist" // Sample Mnist or Cifar10
-  val channels = 1 //1 Mnist or 3 Cifar
+  val trainingSample = "Cifar10" // Sample Mnist or Cifar10
+  val channels = 3 //1 Mnist or 3 Cifar
   val InputLayerType = "Dense"
-  val InputActivationType = "Sigmoid"
-  val InputLayer = 784 // 784 Mnist or 3072 Cifar
-  val InputLayerDim = 1// Vertical split
+  val InputActivationType = "SiLu"
+  val InputLayer = 3072 // 784 Mnist or 3072 Cifar
+  val InputLayerDim = 4// Vertical split
 
-  val HiddenLayers = Array[Int](30) // Horizontal split
-  val HiddenLayersDim = Array[Int](1) // Vertical split : Disabled for the moment not working sufficiently
-  val HiddenLayerType = Array[String](   "Dense") // Dense or Conv2D
-  val HiddenActivationType = Array[String](  "LeakyRelu") // Sigmoid, Relu, TanH, LeakyRelu
+  val HiddenLayers = Array[Int](50,50,50) // Neurons size
+  val HiddenLayersDim = Array[Int](1,1,1) // Vertical split : Disabled for the moment not working sufficiently. Waiting for KAN implementation instead
+  val HiddenLayerType = Array[String](   "Dense", "Dense","Dense") // Dense or Conv2D
+  val HiddenActivationType = Array[String](  "SiLu", "LeakyRelu","LeakyRelu") // Sigmoid, Relu, TanH, LeakyRelu
   val Filters = Array[String]("filters:5;kernel:3,3;stride:1;padding:same","filters:10;kernel:3,3;stride:1;padding:same")
 
   val ForwardBatchNormalization=false
@@ -36,8 +36,8 @@ object Network {
   var Regularisation:Float = 5f
   val Epochs = 15
   var MiniBatch:Int = 30
-  val MiniBatchRange:Int = 60000 // Mnist 60000 or Cifar 45000
-  val minibatchBuffer = 60000 // <= MiniBatchRange
+  val MiniBatchRange:Int = 45000 // Mnist 60000 or Cifar 45000
+  val minibatchBuffer = 45000 // <= MiniBatchRange
   var rangeInitAuto:Boolean = true
   var rangeInitStart:Float = -1f
   var rangeInitEnd:Float = 1f

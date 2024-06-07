@@ -10,6 +10,7 @@ object Normalisation {
   def flattenHashMap(inputs:scala.collection.mutable.HashMap[String,Array[Float]]) : Array[Float] = {
     inputs.values.flatten.toArray
   }
+
   def getMean(input: Array[Float]): Float = {
     val dense = DenseVector(input)
     mean(dense)

@@ -1,8 +1,8 @@
 package com.deeplearning.layer
 
-import com.deeplearning.CostManager.dotProduct
+import com.deeplearning.CostManager.{batchNormalize, dotProduct, normalize, softMax}
 import com.deeplearning.{ActivationManager, ComputeInputs, ComputeWeighted, CostManager, LayerManager, Network, Normalisation}
-import com.deeplearning.Network.{generateRandomBiasFloat}
+import com.deeplearning.Network.generateRandomBiasFloat
 
 import java.time.{Duration, Instant}
 
@@ -76,8 +76,9 @@ class DenseActivationLayer extends ActivationLayer {
       //val normalizeWeights = Normalization.forward(weighted(correlationId), weighted.size)
       //val min = weighted(correlationId).min
       //val max = weighted(correlationId).max
+      val norm = batchNormalize(weighted(correlationId))
 
-      val z = CostManager.sum2(weighted(correlationId) , bias)
+      val z = CostManager.sum2(norm , bias)
       //z = CostManager.matMulScalar(weightedPenalty, z)
       Z += (correlationId -> z)
       //println("Activation function (" + layer + ")" + Network.getActivationLayersType(layer))

@@ -76,6 +76,12 @@ object CostManager {
     lossOutput(0)
   }
 
+  def normalize(arr: Array[Float]): Array[Float] = {
+    val max = arr.max
+    val min = arr.min
+    arr.map(v => (v - min) / (max - min))
+  }
+
   def categoricalCrossEntropy(trueLabels: Array[Float], prediction: Array[Float]): Float = {
     if (Network.GpuMode) {
       val manager = NDManager.newBaseManager(Device.gpu(0))
