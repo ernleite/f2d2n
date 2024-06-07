@@ -15,6 +15,4 @@ target/
 .classpath
 .project
 .settings
-/src/main/resources/*.csv
 /src/main/resources/*.txt
-/src/main/resources/*.conf
