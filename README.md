@@ -1,5 +1,11 @@
-**Fully distributed Deep Neural Network**   
-The code is free to use unless part of the Akka implementation (see lightbend licencing mode here : https://www.lightbend.com/akka/license-faq)  
+#Fully distributed Deep Neural Network#   
+
+#Installation : 
+1 - To run the server you can use Intellij and run it locally  
+2 - In a cluster mode you will need sbt / Jdk (like amazon correto)  
+
+# example of install in Ubuntu 20.04 LTS
+
 
 To start the cluster (XX = memory to allocate) :    
 Main server (Epoch) or standalone mode:    
@@ -21,4 +27,4 @@ For cluster mode :
 > for each server : define the different UCs. They must be unique in the entire cluster  /src/main/ressources/network.conf
 
 See and cite research paper : https://hal.science/hal-04435168v1/
-
+Licencing : see licence
