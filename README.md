@@ -1,17 +1,26 @@
-#Fully distributed Deep Neural Network#   
+# Fully distributed Deep Neural Network #   
 
 #Installation : 
 1 - To run the server you can use Intellij and run it locally  
 2 - In a cluster mode you will need sbt / Jdk (like amazon correto)  
 
-# example of install in Ubuntu 20.04 LTS
+### example of install in Ubuntu 20.04 LTS ###
+```
+echo "deb https://repo.scala-sbt.org/scalasbt/debian /" | sudo tee /etc/apt/sources.list.d/sbt_old.list
+curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | sudo -H gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/scalasbt-release.gpg --import
+sudo chmod 644 /etc/apt/trusted.gpg.d/scalasbt-release.gpg
+sudo apt-get update
+sudo apt-get install sbt
+wget -O - https://apt.corretto.aws/corretto.key | sudo gpg --dearmor -o /usr/share/keyrings/corretto-keyring.gpg && echo "deb [signed-by=/usr/share/keyrings/corretto-keyring.gpg] https://apt.corretto.aws stable main" | sudo tee /etc/apt/sources.list.d/corretto.list
 
+```
 
+### Start the cluster ###
 To start the cluster (XX = memory to allocate) :    
-Main server (Epoch) or standalone mode:    
+** Main server (Epoch) or standalone mode: **    
 sbt -J-XmxXXg -J-XX:+UseG1GC "runMain sample.cluster.simple.StartMain"   
 
-**Worker (if cluster > 1 node)  **
+** Worker (if cluster > 1 node)  **
 sbt -J-Xmx160g -J-XX:+UseG1GC "runMain sample.cluster.simple.StartWorker"    
 
 **Resources folder contains :**   
