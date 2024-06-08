@@ -67,7 +67,7 @@ object ActivationManager {
         val mat = (1.0f - DenseMatrix(sigmoid(z)))
         val arr = dotProduct(sigmoid(z),mat.toArray)
         arr
-      case "SiLu" =>
+      case "SiLu"  =>
         val mat = (1.0f - DenseMatrix(sigmoid(z)))
         val arr = dotProduct(z*sigmoid(z),mat.toArray)
         arr
