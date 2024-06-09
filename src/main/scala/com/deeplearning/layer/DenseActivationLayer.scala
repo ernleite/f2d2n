@@ -76,9 +76,9 @@ class DenseActivationLayer extends ActivationLayer {
       //val normalizeWeights = Normalization.forward(weighted(correlationId), weighted.size)
       //val min = weighted(correlationId).min
       //val max = weighted(correlationId).max
-      val norm = batchNormalize(weighted(correlationId))
+     // val norm = batchNormalize(weighted(correlationId))
 
-      val z = CostManager.sum2(norm , bias)
+      val z = CostManager.sum2(weighted(correlationId) , bias)
       //z = CostManager.matMulScalar(weightedPenalty, z)
       Z += (correlationId -> z)
       //println("Activation function (" + layer + ")" + Network.getActivationLayersType(layer))
