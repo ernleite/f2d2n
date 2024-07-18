@@ -29,7 +29,7 @@ sbt -J-Xmx160g -J-XX:+UseG1GC "runMain sample.cluster.simple.StartWorker"
 
 **Resources folder contains :**   
 application.conf : specify the akka cluster   
-network.conf : specify the UC to dedicate to a specific node (ex: hiddenLayer_0)   
+network.conf : specify the UC to dedicate to a specific node (ex: inputLayer_0, inputLayer_1, hiddenLayer_1_0, weightedLayer_2_0, outputLayer_0)   
 Network.scala : configuration file for the DNN to train. Specify here the number of nodes of the server, how many layers, splits, learning rate, etc  
 
 The current implementation is for local mode only.
