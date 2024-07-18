@@ -1,7 +1,7 @@
 import com.typesafe.sbt.SbtMultiJvm.multiJvmSettings
 import com.typesafe.sbt.SbtMultiJvm.MultiJvmKeys.MultiJvm
 
-val akkaVersion = "2.9.2"
+val akkaVersion = "2.9.4"
 
 lazy val `akka-sample-cluster-scala` = project
   .in(file("."))
@@ -22,16 +22,16 @@ lazy val `akka-sample-cluster-scala` = project
       "org.scalatest"     %% "scalatest"                  % "3.2.15"     % Test,
       "com.typesafe.akka" %% "akka-stream" % akkaVersion,
       "org.scalanlp" %% "breeze" % "2.1.0",
-      "com.amazonaws" % "aws-java-sdk-s3" % "1.12.514",
+      "com.amazonaws" % "aws-java-sdk-s3" % "1.12.761",
       "javax.xml.bind" % "jaxb-api" % "2.3.1",
       "dev.ludovic.netlib" % "blas" % "3.0.3",
       "dev.ludovic.netlib" % "lapack" % "3.0.3",
       "dev.ludovic.netlib" % "arpack" % "3.0.3",
       "org.slf4j" % "slf4j-simple" % "2.0.9",
-      "ai.djl" % "api" % "0.23.0",
-      "ai.djl.pytorch" % "pytorch-engine" % "0.23.0",
+      "ai.djl" % "api" % "0.28.0",
+      "ai.djl.pytorch" % "pytorch-engine" % "0.28.0",
       "commons-cli"%"commons-cli" %"1.5.0",
-      "org.bytedeco" % "openblas" % "0.3.23-1.5.9",
+      "org.bytedeco" % "openblas" % "0.3.26-1.5.10",
       "dev.ludovic.netlib" % "parent" % "3.0.3" pomOnly()
       //"com.intel.dal" % "dal" % "2023.1.0.31217"
     ),

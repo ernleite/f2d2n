@@ -10,16 +10,16 @@ import scala.util.Random
 object Network {
 
   val clusterNodesDim = 1 // Cluster dimension
-  val trainingSample = "Mnist" // Sample Mnist or Cifar10
-  val channels = 1 //1 Mnist or 3 Cifar
+  val trainingSample = "Cifar10" // Sample Mnist or Cifar10
+  val channels = 3 //1 Mnist or 3 Cifar
   val InputLayerType = "Dense"
   val InputActivationType = "Sigmoid"
-  val InputLayer = 784 // 784 Mnist or 3072 Cifar
+  val InputLayer = 3072 // 784 Mnist or 3072 Cifar
   val InputLayerDim = 4// Vertical split
 
-  val HiddenLayers = Array[Int](50) // Neurons size
+  val HiddenLayers = Array[Int](150) // Neurons size
   val HiddenLayersDim = Array[Int](1) // Vertical split : Disabled for the moment not working sufficiently. Waiting for KAN implementation instead
-  val HiddenLayerType = Array[String](   "Dense") // Dense or Conv2D
+  val HiddenLayerType = Array[String]( "Dense") // Dense or Conv2D
   val HiddenActivationType = Array[String]("LeakyRelu") // Sigmoid, Relu, TanH, LeakyRelu
   val Filters = Array[String]("filters:5;kernel:3,3;stride:1;padding:same","filters:10;kernel:3,3;stride:1;padding:same")
 
@@ -30,11 +30,11 @@ object Network {
   val OutputActivationType = "SoftMax"
 
   val CostFunction = "CategoricalCrossEntropy"
-  var LearningRate:Float =  0.195f
+  var LearningRate:Float =  0.1f
   val weightedPenalty = 0.05f
   var InitialLearningRate:Float = LearningRate
   var Regularisation:Float = 5f
-  val Epochs = 15
+  val Epochs = 10
   var MiniBatch:Int = 30
   val MiniBatchRange:Int = 45000 // Mnist 60000 or Cifar 45000
   val minibatchBuffer = 45000 // <= MiniBatchRange
@@ -46,7 +46,7 @@ object Network {
   var LeakyReluAlpha:Float = 0.01f
   var NaN:Boolean = false
   var CheckNaN:Boolean = false
-  var dropout:Float = -1f//-1 Dropout desactivated
+  var dropout:Float = 0.8f//-1 Dropout desactivated
   val drop = 0.325f
   val epochs_drop = 5
   val debug:Boolean = false
