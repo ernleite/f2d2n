@@ -13,14 +13,14 @@ object Network {
   val trainingSample = "Cifar10" // Sample Mnist or Cifar10
   val channels = 3 //1 Mnist or 3 Cifar
   val InputLayerType = "Dense"
-  val InputActivationType = "Sigmoid"
+  val InputActivationType = "Tanh"
   val InputLayer = 3072 // 784 Mnist or 3072 Cifar
   val InputLayerDim = 4// Vertical split
 
-  val HiddenLayers = Array[Int](150) // Neurons size
-  val HiddenLayersDim = Array[Int](1) // Vertical split : Disabled for the moment not working sufficiently. Waiting for KAN implementation instead
-  val HiddenLayerType = Array[String]( "Dense") // Dense or Conv2D
-  val HiddenActivationType = Array[String]("LeakyRelu") // Sigmoid, Relu, TanH, LeakyRelu
+  val HiddenLayers = Array[Int](150,50) // Neurons size
+  val HiddenLayersDim = Array[Int](1,1) // Vertical split : Disabled for the moment not working sufficiently. Waiting for KAN implementation instead
+  val HiddenLayerType = Array[String]( "Dense","Dense") // Dense or Conv2D
+  val HiddenActivationType = Array[String]("Tanh","LeakyRelu") // Sigmoid, Relu, TanH, LeakyRelu
   val Filters = Array[String]("filters:5;kernel:3,3;stride:1;padding:same","filters:10;kernel:3,3;stride:1;padding:same")
 
   val ForwardBatchNormalization=false
